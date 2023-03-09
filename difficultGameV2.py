@@ -32,29 +32,34 @@ def deactivate_led(pin):
 
 # Fonction pour jouer une partie
 # Fonction pour jouer une partie
+# Fonction pour jouer une partie
 def play_game(base_difficulty):
     global score
     global game_over
     difficulty = base_difficulty
-    previous_led_pin = None
+    prev_led = -1  # initial value for previous LED index
     while not game_over:
-        # Choisir une LED au hasard qui n'est pas la même que la précédente
-        led_pin = random.choice([p for p in led_pins if p != previous_led_pin])
-        previous_led_pin = led_pin
-
+        led_pin = random.choice([x for x in led_pins if x != prev_led])  # Choose a random LED that was not lit previously
+        prev_led = led_pin  # Store current LED as previous LED
         activate_led(led_pin)
         time.sleep(difficulty)
         deactivate_led(led_pin)
-        if GPIO.input(button_pins[led_pins.index(led_pin)]) == GPIO.LOW:
+        button_index = button_pins.index(request_button())  # Get index of button that was pressed
+        if button_index != led_pins.index(led_pin):
+            game_over = True
+        else:
             score += 1
             # Augmenter la difficulté toutes les 5 secondes
             if score % 5 == 0:
                 difficulty *= 1.1
-        else:
-            game_over = True
 
 
-
+# Fonction pour récupérer le bouton qui a été pressé
+def request_button():
+    for i, button_pin in enumerate(button_pins):
+        if GPIO.input(button_pin) == GPIO.LOW:
+            return button_pin
+    return None
 
 # Route pour la page d'accueil
 @app.route("/")
