@@ -34,7 +34,7 @@ def play_game():
     while not game_over:
         led_pin = random.choice(led_pins)
         activate_led(led_pin)
-        time.sleep(5)
+        time.sleep(1.5)
         deactivate_led(led_pin)
         if GPIO.input(button_pins[led_pins.index(led_pin)]) == GPIO.LOW:
             score += 1
