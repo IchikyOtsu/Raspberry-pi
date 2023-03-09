@@ -19,9 +19,11 @@ GPIO.setup(button_pins, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Variables du jeu
 score = 0
 game_over = False
-EASY = 1.5  # LED remains on for 1.5 seconds
-MEDIUM = 1.0  # LED remains on for 1.0 second
-HARD = 0.5  # LED remains on for 0.5 seconds
+EASY = 2.0  # La LED reste allumée pendant 1,5 seconde
+MEDIUM = 1.5  # La LED reste allumée pendant 1,0 seconde
+HARD = 1.0  # La LED reste allumée pendant 0,5 seconde
+SPEED_INCREASE = 0.02 # Augmentation de la vitesse des LED par incrément de score
+
 # Fonction pour activer une LED
 def activate_led(pin):
     GPIO.output(pin, GPIO.HIGH)
@@ -31,32 +33,33 @@ def deactivate_led(pin):
     GPIO.output(pin, GPIO.LOW)
 
 # Fonction pour jouer une partie
-# Fonction pour jouer une partie
-# Fonction pour jouer une partie
 def play_game(base_difficulty):
     global score
     global game_over
     difficulty = base_difficulty
-    prev_led = -1  # initial value for previous LED index
+    prev_led = -1  # valeur initiale de l'indice LED précédent
     while not game_over:
-        led_pin = random.choice([x for x in led_pins if x != prev_led])  # Choose a random LED that was not lit previously
-        prev_led = led_pin  # Store current LED as previous LED
+        led_pin = random.choice([x for x in led_pins if x != prev_led])  # Choisissez une LED au hasard qui n'était pas allumée auparavant
+        prev_led = led_pin  # Stocker la LED actuelle en tant que LED précédente
         activate_led(led_pin)
         time.sleep(difficulty)
         deactivate_led(led_pin)
-        button_index = button_pins.index(request_button())  # Get index of button that was pressed
-        if button_index != led_pins.index(led_pin):
-            game_over = True
+        button_pin = request_button()  # Obtenir le pin du bouton qui a été pressé
+        if button_pin is not None:
+            button_index = button_pins.index(button_pin)  # Obtenir l'index du bouton qui a été pressé
+            if button_index != led_pins.index(led_pin):
+                game_over = True
+            else:
+                score += 1
+                difficulty -= SPEED_INCREASE  # Augmenter la vitesse des LED
+                if difficulty < HARD:  # Vitesse minimale des DEL
+                    difficulty = HARD
         else:
-            score += 1
-            # Augmenter la difficulté toutes les 5 secondes
-            if score % 5 == 0:
-                difficulty *= 1.1
+            game_over = True
 
-
-# Fonction pour récupérer le bouton qui a été pressé
+# Fonction pour récupérer le pin du bouton qui a été pressé
 def request_button():
-    for i, button_pin in enumerate(button_pins):
+    for button_pin in button_pins:
         if GPIO.input(button_pin) == GPIO.LOW:
             return button_pin
     return None
