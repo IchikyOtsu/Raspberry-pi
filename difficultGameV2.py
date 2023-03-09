@@ -19,7 +19,6 @@ GPIO.setup(button_pins, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Variables du jeu
 score = 0
 game_over = False
-difficulty = 1.0 # Niveau de difficulté, par défaut 1.0 (facile)
 EASY = 1.5  # LED remains on for 1.5 seconds
 MEDIUM = 1.0  # LED remains on for 1.0 second
 HARD = 0.5  # LED remains on for 0.5 seconds
@@ -32,18 +31,29 @@ def deactivate_led(pin):
     GPIO.output(pin, GPIO.LOW)
 
 # Fonction pour jouer une partie
-def play_game(difficulty):
+# Fonction pour jouer une partie
+def play_game(base_difficulty):
     global score
     global game_over
+    difficulty = base_difficulty
+    previous_led_pin = None
     while not game_over:
-        led_pin = random.choice(led_pins)
+        # Choisir une LED au hasard qui n'est pas la même que la précédente
+        led_pin = random.choice([p for p in led_pins if p != previous_led_pin])
+        previous_led_pin = led_pin
+
         activate_led(led_pin)
         time.sleep(difficulty)
         deactivate_led(led_pin)
         if GPIO.input(button_pins[led_pins.index(led_pin)]) == GPIO.LOW:
             score += 1
+            # Augmenter la difficulté toutes les 5 secondes
+            if score % 5 == 0:
+                difficulty *= 1.1
         else:
             game_over = True
+
+
 
 
 # Route pour la page d'accueil
@@ -101,12 +111,12 @@ def game():
     game_over = False
     difficulty = request.args.get('difficulty')
     if difficulty == 'easy':
-        duration = EASY
+        base_difficulty = EASY
     elif difficulty == 'medium':
-        duration = MEDIUM
+        base_difficulty = MEDIUM
     elif difficulty == 'hard':
-        duration = HARD
-    play_game(duration)
+        base_difficulty = HARD
+    play_game(base_difficulty)
     html = """
     <html>
         <head>
@@ -123,3 +133,4 @@ def game():
     </html>
     """
     return render_template_string(html, score=score)
+
