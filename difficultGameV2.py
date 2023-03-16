@@ -9,11 +9,11 @@ app = Flask(__name__)
 # Configuration des broches pour les LEDs
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-led_pins = [18, 23, 24]
+led_pins = [26, 13, 5]
 GPIO.setup(led_pins, GPIO.OUT)
 
 # Configuration des broches pour les boutons
-button_pins = [4, 17, 27]
+button_pins = [19, 6, 21]
 GPIO.setup(button_pins, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Variables du jeu
