@@ -3,7 +3,7 @@ from gpiozero.tones import Tone
 from time import sleep
 
 # Création d'une instance de TonalBuzzer sur la broche 21
-buzzer = TonalBuzzer(21)
+buzzer = TonalBuzzer(4)
 
 # Jouer les notes de la mélodie
 buzzer.play(Tone("C5"))
