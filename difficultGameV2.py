@@ -13,7 +13,7 @@ led_pins = [26, 13, 5]
 GPIO.setup(led_pins, GPIO.OUT)
 
 # Configuration des broches pour les boutons
-button_pins = [19, 6, 21]
+button_pins = [19, 6, 7]
 GPIO.setup(button_pins, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Variables du jeu
@@ -72,6 +72,62 @@ def home():
         <head>
             <title>Jeu de LEDs et de boutons</title>
         </head>
+        <style>
+            body {
+                background-color: #000000;
+                color: #ffffff;
+                font-family: 'Press Start 2P', cursive;
+            }
+            h1 {
+                font-size: 60px;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 10px;
+                margin: 50px 0;
+                text-shadow: 4px 4px #ff0000;
+            }
+            p {
+                font-size: 20px;
+                margin: 20px;
+            }
+            button {
+                background-color: #ff0000;
+                border: none;
+                color: #ffffff;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                margin: 20px;
+                box-shadow: 4px 4px #000000;
+                cursor: pointer;
+            }
+            input[type=radio] {
+                display: none;
+            }
+            input[type=radio] + label {
+                background-color: #000000;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                display: inline-block;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                margin: 20px;
+                box-shadow: 4px 4px #ff0000;
+                cursor: pointer;
+            }
+            input[type=radio]:checked + label {
+                background-color: #ff0000;
+                border: 2px solid #000000;
+                color: #000000;
+                box-shadow: 4px 4px #ffffff;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <body>
             <h1>Bienvenue dans le jeu de LEDs et de boutons !</h1>
             <p>Cliquez sur le bouton ci-dessous pour commencer une partie.</p>
@@ -95,6 +151,62 @@ def play():
         <head>
             <title>Sélectionner le niveau de difficulté</title>
         </head>
+        <style>
+            body {
+                background-color: #000000;
+                color: #ffffff;
+                font-family: 'Press Start 2P', cursive;
+            }
+            h1 {
+                font-size: 60px;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 10px;
+                margin: 50px 0;
+                text-shadow: 4px 4px #ff0000;
+            }
+            p {
+                font-size: 20px;
+                margin: 20px;
+            }
+            button {
+                background-color: #ff0000;
+                border: none;
+                color: #ffffff;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                margin: 20px;
+                box-shadow: 4px 4px #000000;
+                cursor: pointer;
+            }
+            input[type=radio] {
+                display: none;
+            }
+            input[type=radio] + label {
+                background-color: #000000;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                display: inline-block;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                margin: 20px;
+                box-shadow: 4px 4px #ff0000;
+                cursor: pointer;
+            }
+            input[type=radio]:checked + label {
+                background-color: #ff0000;
+                border: 2px solid #000000;
+                color: #000000;
+                box-shadow: 4px 4px #ffffff;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <body>
             <h1>Sélectionner le niveau de difficulté :</h1>
             <form action="/game" method="get">
@@ -130,6 +242,62 @@ def game():
         <head>
             <title>Résultat</title>
         </head>
+        <style>
+            body {
+                background-color: #000000;
+                color: #ffffff;
+                font-family: 'Press Start 2P', cursive;
+            }
+            h1 {
+                font-size: 60px;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 10px;
+                margin: 50px 0;
+                text-shadow: 4px 4px #ff0000;
+            }
+            p {
+                font-size: 20px;
+                margin: 20px;
+            }
+            button {
+                background-color: #ff0000;
+                border: none;
+                color: #ffffff;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                margin: 20px;
+                box-shadow: 4px 4px #000000;
+                cursor: pointer;
+            }
+            input[type=radio] {
+                display: none;
+            }
+            input[type=radio] + label {
+                background-color: #000000;
+                border: 2px solid #ffffff;
+                color: #ffffff;
+                display: inline-block;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 10px 20px;
+                text-transform: uppercase;
+                letter-spacing: 5px;
+                margin: 20px;
+                box-shadow: 4px 4px #ff0000;
+                cursor: pointer;
+            }
+            input[type=radio]:checked + label {
+                background-color: #ff0000;
+                border: 2px solid #000000;
+                color: #000000;
+                box-shadow: 4px 4px #ffffff;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <body>
             <h1>Partie terminée !</h1>
             <p>Votre score est de {{ score }}.</p>
