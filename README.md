@@ -28,3 +28,6 @@ Ajouter des options pour personnaliser les paramètres du jeu, comme la vitesse 
 Ajouter une fonctionnalité de mode multijoueur pour permettre aux joueurs de jouer ensemble.
 
 Améliorer l'interface utilisateur en utilisant des bibliothèques de conception ou en ajoutant des animations interactives pour rendre le jeu plus attractif.
+
+
+Ajoutez une fonctionnalité de sauvegarde de score : Ajoutez une base de données pour stocker les scores des joueurs. Cela permettra aux joueurs de suivre leur progression au fil du temps et de se comparer à d'autres joueurs.
