@@ -19,9 +19,9 @@ GPIO.setup(button_pins, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Variables du jeu
 score = 0
 game_over = False
-EASY = 2.0  # La LED reste allumée pendant 1,5 seconde
-MEDIUM = 1.5  # La LED reste allumée pendant 1,0 seconde
-HARD = 1.0  # La LED reste allumée pendant 0,5 seconde
+EASY = 2.0 # La LED reste allumée pendant 1,5 seconde
+MEDIUM = 1.0  # La LED reste allumée pendant 1,0 seconde
+HARD = 0.5  # La LED reste allumée pendant 0,5 seconde
 SPEED_INCREASE = 0.02 # Augmentation de la vitesse des LED par incrément de score
 
 # Fonction pour activer une LED
@@ -52,8 +52,8 @@ def play_game(base_difficulty):
             else:
                 score += 1
                 difficulty -= SPEED_INCREASE  # Augmenter la vitesse des LED
-                if difficulty < HARD:  # Vitesse minimale des DEL
-                    difficulty = HARD
+                if difficulty < 0.2:  # Vitesse minimale des DEL
+                    difficulty = 0.2
         else:
             game_over = True
 
