@@ -24,8 +24,8 @@ GPIO.setup(button_pins, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 score = 0
 game_over = False
 EASY = 2.0  # La LED reste allumée pendant 1,5 seconde
-MEDIUM = 1.5  # La LED reste allumée pendant 1,0 seconde
-HARD = 1.0  # La LED reste allumée pendant 0,5 seconde
+MEDIUM = 1.0  # La LED reste allumée pendant 1,0 seconde
+HARD = 0.5  # La LED reste allumée pendant 0,5 seconde
 SPEED_INCREASE = 0.02 # Augmentation de la vitesse des LED par incrément de score
 
 # Fonction pour activer une LED
