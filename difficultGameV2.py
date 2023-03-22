@@ -52,8 +52,8 @@ def play_game(base_difficulty):
             else:
                 score += 1
                 difficulty -= SPEED_INCREASE  # Augmenter la vitesse des LED
-                if difficulty < 0.2:  # Vitesse minimale des DEL
-                    difficulty = 0.2
+                if difficulty < 0.25:  # Vitesse minimale des DEL
+                    difficulty = 0.25
         else:
             game_over = True
 
