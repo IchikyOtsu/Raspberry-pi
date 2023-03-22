@@ -69,7 +69,7 @@ def request_button():
 def home():
     html = """
     <html>
-        <head>
+        <head></head>
         <body>
             <h1>Bienvenue dans le jeu de LEDs et de boutons !</h1>
             <p>Cliquez sur le bouton ci-dessous pour commencer une partie.</p>
